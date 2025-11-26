@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Localization/LocalizationManager.fs" />
+    <Compile Include="SelectionScreen.fs" />
     <Compile Include="PomoGame.fs" />
   </ItemGroup>
 

@@ -15,6 +15,7 @@ type PomoGame() as this =
   inherit Game()
 
   let graphicsDeviceManager = new GraphicsDeviceManager(this)
+  let mutable selectionScreen: SelectionScreen option = None
 
   let isMobile = OperatingSystem.IsAndroid() || OperatingSystem.IsIOS()
 
@@ -39,6 +40,11 @@ type PomoGame() as this =
     base.Initialize()
 
     LocalizationManager.DefaultCultureCode |> LocalizationManager.SetCulture
+    
+    // Initialize the selection screen
+    let screen = new SelectionScreen(this)
+    screen.Initialize()
+    selectionScreen <- Some screen
 
 
   override this.LoadContent() = base.LoadContent()
@@ -56,6 +62,9 @@ type PomoGame() as this =
       this.Exit()
 
     else
+      // Update the selection screen
+      selectionScreen |> Option.iter (fun screen -> screen.Update())
+      
       // Update game logic here
       // e.g., update game entities, handle input, etc.
       base.Update(gameTime)
@@ -63,7 +72,11 @@ type PomoGame() as this =
 
   override this.Draw(gameTime) =
 
-    base.GraphicsDevice.Clear(Color.MonoGameOrange)
+    base.GraphicsDevice.Clear(Color.CornflowerBlue)
+    
+    // Draw the selection screen
+    selectionScreen |> Option.iter (fun screen -> screen.Draw())
+    
     // Draw game content here
 
     base.Draw(gameTime)
