@@ -24,41 +24,29 @@ type SelectionScreen(game: Game) =
       titleLabel.Text <- "Selection Screen"
       titleLabel.TextColor <- Color.White
 
-      // Create a menu with selection buttons
-      let newGameButton = new Button()
-      newGameButton.Content <- new Label(Text = "New Game")
-      newGameButton.Width <- 200
-      newGameButton.Height <- 50
-      
-      let loadGameButton = new Button()
-      loadGameButton.Content <- new Label(Text = "Load Game")
-      loadGameButton.Width <- 200
-      loadGameButton.Height <- 50
-      
-      let settingsButton = new Button()
-      settingsButton.Content <- new Label(Text = "Settings")
-      settingsButton.Width <- 200
-      settingsButton.Height <- 50
-      
-      let exitButton = new Button()
-      exitButton.Content <- new Label(Text = "Exit")
-      exitButton.Width <- 200
-      exitButton.Height <- 50
+      // Helper function to create buttons
+      let createButton text onClick =
+        let button = new Button()
+        button.Content <- new Label(Text = text)
+        button.Width <- 200
+        button.Height <- 50
+        button.Click.Add(onClick)
+        button
 
-      // Add click handlers (placeholders for now)
-      newGameButton.Click.Add(fun _ -> 
+      // Create menu buttons
+      let newGameButton = createButton "New Game" (fun _ -> 
         System.Console.WriteLine("New Game clicked")
       )
       
-      loadGameButton.Click.Add(fun _ -> 
+      let loadGameButton = createButton "Load Game" (fun _ -> 
         System.Console.WriteLine("Load Game clicked")
       )
       
-      settingsButton.Click.Add(fun _ -> 
+      let settingsButton = createButton "Settings" (fun _ -> 
         System.Console.WriteLine("Settings clicked")
       )
       
-      exitButton.Click.Add(fun _ -> 
+      let exitButton = createButton "Exit" (fun _ -> 
         System.Console.WriteLine("Exit clicked")
         game.Exit()
       )
