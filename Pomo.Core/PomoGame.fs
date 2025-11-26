@@ -39,6 +39,10 @@ type PomoGame() as this =
     base.Initialize()
 
     LocalizationManager.DefaultCultureCode |> LocalizationManager.SetCulture
+    
+    // Add the selection screen as a game component
+    let selectionScreen = new SelectionScreen(this)
+    this.Components.Add(selectionScreen)
 
 
   override this.LoadContent() = base.LoadContent()
@@ -63,7 +67,8 @@ type PomoGame() as this =
 
   override this.Draw(gameTime) =
 
-    base.GraphicsDevice.Clear(Color.MonoGameOrange)
+    base.GraphicsDevice.Clear(Color.CornflowerBlue)
+    
     // Draw game content here
 
     base.Draw(gameTime)

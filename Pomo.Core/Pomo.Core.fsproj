@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Localization/LocalizationManager.fs" />
+    <Compile Include="SelectionScreen.fs" />
     <Compile Include="PomoGame.fs" />
   </ItemGroup>
 
@@ -13,5 +14,6 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Myra" Version="1.5.10" />
   </ItemGroup>
 </Project>
